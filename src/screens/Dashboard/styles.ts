@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { FlatList } from "react-native";
+import { FlatList, Image } from "react-native";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import {
   getBottomSpace,
@@ -37,7 +37,7 @@ export const UserInfo = styled.View`
   flex-direction: row;
   align-items: center;
 `;
-export const Photo = styled.Image`
+export const Photo = styled(Image)`
   width: ${RFValue(48)}px;
   height: ${RFValue(48)}px;
   border-radius: 10px;
@@ -94,3 +94,9 @@ export const TransactionList = styled(
 })``;
 
 export const LogoutButton = styled(BorderlessButton)``;
+
+export const LoadContainer = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;

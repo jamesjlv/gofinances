@@ -25,8 +25,8 @@ export default function App() {
   } else {
     return (
       <ThemeProvider theme={theme}>
-        <StatusBar style="light" />
         <NavigationContainer>
+          <StatusBar style="light" />
           <AppRoutes />
         </NavigationContainer>
       </ThemeProvider>

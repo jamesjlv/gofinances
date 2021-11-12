@@ -36,7 +36,9 @@ export function HighlightCart({
         <Icon name={icon[type]} type={type} />
       </Header>
       <Footer>
-        <Amount type={type}>{amount}</Amount>
+        <Amount type={type}>
+          {amount?.length > 14 ? `${amount?.slice(0, 14)}...` : amount}
+        </Amount>
         <LastTransaction type={type}>{lastTransaction}</LastTransaction>
       </Footer>
     </Container>
