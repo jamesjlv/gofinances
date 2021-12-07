@@ -4,7 +4,8 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
-    "start": "react-native start"
+    "start": "react-native start",
+    "test": "jest"
   },
   "dependencies": {
     "@expo-google-fonts/poppins": "^0.2.0",
@@ -12,10 +13,15 @@
     "@react-native-async-storage/async-storage": "~1.15.0",
     "@react-navigation/bottom-tabs": "^6.0.9",
     "@react-navigation/native": "^6.0.6",
+    "@react-navigation/stack": "^6.0.11",
+    "babel-plugin-inline-dotenv": "^1.6.0",
     "date-fns": "^2.25.0",
     "expo": "~43.0.0",
     "expo-app-loading": "~1.2.1",
+    "expo-apple-authentication": "~4.0.3",
+    "expo-auth-session": "~3.4.2",
     "expo-font": "~10.0.3",
+    "expo-random": "~12.0.1",
     "expo-splash-screen": "~0.13.3",
     "expo-status-bar": "~1.1.0",
     "expo-updates": "~0.10.15",
@@ -31,6 +37,7 @@
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.8.0",
     "react-native-svg": "^12.1.1",
+    "react-native-svg-transformer": "^0.14.3",
     "react-native-uuid": "^2.0.1",
     "react-native-web": "0.17.1",
     "styled-components": "^5.3.3",
@@ -39,10 +46,20 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@testing-library/jest-native": "^4.0.4",
+    "@testing-library/react-native": "^9.0.0",
+    "@types/jest": "^27.0.3",
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.64.12",
     "@types/styled-components-react-native": "^5.1.2",
+    "jest-expo": "^43.0.1",
     "typescript": "~4.3.5"
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-native/extend-expect"
+    ]
   },
   "private": true
 }

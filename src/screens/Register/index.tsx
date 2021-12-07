@@ -24,6 +24,7 @@ import {
   NavigationProp,
   ParamListBase,
 } from "@react-navigation/native";
+import { useAuth } from "../../hooks/auth";
 
 interface FormData {
   name: string;
@@ -39,7 +40,8 @@ export const FormSchema = Yup.object({
 });
 
 export function Register() {
-  const dataKey = "@gofinances:transaction";
+  const { user } = useAuth();
+  const dataKey = `@gofinances:transaction_user:${user.id}`;
   const { control, handleSubmit, formState, reset } = useForm({
     resolver: yupResolver(FormSchema),
   });

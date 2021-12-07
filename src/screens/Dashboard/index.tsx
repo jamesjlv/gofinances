@@ -28,6 +28,7 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/core";
 import { useTheme } from "styled-components";
+import { useAuth } from "../../hooks/auth";
 
 export interface DataListProps extends TransactionCardData {
   id: string;
@@ -49,6 +50,7 @@ export function Dashboard() {
   const [highLightData, setHighLightData] = useState<HighLightData>(
     {} as HighLightData
   );
+  const { user, signOut } = useAuth();
   const theme = useTheme();
 
   function getLastTransactionDate(
@@ -71,7 +73,7 @@ export function Dashboard() {
   }
 
   async function loadTransactions() {
-    const dataKey = "@gofinances:transaction";
+    const dataKey = `@gofinances:transaction_user:${user.id}`;
     const response = await AsyncStorage.getItem(dataKey);
     const transactions = response ? JSON.parse(response) : [];
 
@@ -125,14 +127,22 @@ export function Dashboard() {
           style: "currency",
           currency: "BRL",
         }),
-        lastTransaction: `Última entrada dia ${lastTransactionsEntries}`,
+        lastTransaction: `${
+          !lastTransactionsEntries.includes("NaN de Invalid Date")
+            ? `Última entrada dia ${lastTransactionsEntries}`
+            : "Não há transações"
+        }`,
       },
       expensives: {
         amount: expensiveTotal.toLocaleString("pt-BR", {
           style: "currency",
           currency: "BRL",
         }),
-        lastTransaction: `Última saída dia ${lastTransactionsExpensive}`,
+        lastTransaction: `${
+          !lastTransactionsExpensive.includes("NaN de Invalid Date")
+            ? `Última saída dia ${lastTransactionsExpensive}`
+            : "Não há transações"
+        }`,
       },
       total: {
         amount: total.toLocaleString("pt-BR", {
@@ -166,13 +176,13 @@ export function Dashboard() {
           <Header>
             <UserWrapper>
               <UserInfo>
-                <Photo source={{ uri: "https://github.com/jamesjlv.png" }} />
+                <Photo source={{ uri: user.photo }} />
                 <User>
                   <UserGreeting>Olá,</UserGreeting>
-                  <UserName>James</UserName>
+                  <UserName>{user.name}</UserName>
                 </User>
               </UserInfo>
-              <LogoutButton onPress={() => {}}>
+              <LogoutButton onPress={signOut}>
                 <Icon name="power" />
               </LogoutButton>
             </UserWrapper>
