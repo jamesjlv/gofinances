@@ -41,11 +41,11 @@ export const FormSchema = Yup.object({
 
 export function Register() {
   const { user } = useAuth();
-  const dataKey = `@gofinances:transaction_user:${user.id}`;
+  const dataKey = `@gofinances:transaction_user:${user?.id}`;
   const { control, handleSubmit, formState, reset } = useForm({
     resolver: yupResolver(FormSchema),
   });
-  const { navigate }: NavigationProp<ParamListBase> = useNavigation();
+  // const navigate: NavigationProp<ParamListBase> = useNavigation();
   const { errors } = formState;
 
   const [transactionType, setTransactionType] = useState("");
@@ -111,7 +111,7 @@ export function Register() {
     });
     setTransactionType("");
 
-    navigate("Listagem");
+    // navigate.navigate("Listagem");
   }
 
   useEffect(() => {
@@ -165,7 +165,7 @@ export function Register() {
           </Fields>
           <Button title="Enviar" onPress={handleSubmit(handleRegister)} />
         </Form>
-        <Modal visible={categoryModalOpen}>
+        <Modal visible={categoryModalOpen} testID="modal-category">
           <CategorySelect
             category={category}
             setCategory={setCategory}

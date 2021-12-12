@@ -3,13 +3,13 @@ import { Feather } from "@expo/vector-icons";
 import { RFValue } from "react-native-responsive-fontsize";
 import { RectButton } from "react-native-gesture-handler";
 
-export const Container = styled.View`
+export const Container = styled(RectButton)`
   width: 100%;
   background-color: ${({ theme }) => theme.colors.shape};
   margin-top: 8px;
 `;
 
-export const Button = styled(RectButton)`
+export const Button = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;

@@ -1,10 +1,19 @@
 {
   "expo": {
-    "name": "gofinances",
-    "slug": "gofinances",
-    "scheme": "gofinances",
-    "version": "1.0.0",
-    "assetBundlePatterns": ["**/*"]
+    "name": "gofinancesjamesjlv",
+    "icon": "./assets/logo.png",
+    "slug": "gofinancesjamesjlv",
+    "scheme": "gofinancesjamesjlv",
+    "version": "1.0.3",
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "bundleIdentifier": "com.gofinances",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "com.gofinancesjamesjlv",
+      "versionCode": 2
+    }
   },
-  "name": "gofinances"
+  "name": "gofinancesjamesjlv"
 }

@@ -54,7 +54,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       const { type, params } = (await AuthSession.startAsync({
         authUrl,
+        returnUrl: `gofinancesjamesjlv://auth.expo.io/@jamesjlv/gofinancesjamesjlv`,
       })) as AuthorizationResponse;
+
       if (type === "success") {
         const response = await fetch(
           `https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${params.access_token}`
@@ -71,7 +73,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         await AsyncStorage.setItem(userStorageKey, JSON.stringify(userLogged));
       }
     } catch (error) {
-      throw new Error(error as string);
+      return;
     }
   }
 
@@ -100,7 +102,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         await AsyncStorage.setItem(userStorageKey, JSON.stringify(userLogged));
       }
     } catch (error) {
-      throw Error(error as string);
+      throw new Error(error as any);
     }
   }
 

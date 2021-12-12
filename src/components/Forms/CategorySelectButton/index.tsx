@@ -6,10 +6,14 @@ interface CategorySelectProps {
   onPress: () => void;
 }
 
-export function CategorySelectButton({ title, onPress }: CategorySelectProps) {
+export function CategorySelectButton({
+  title,
+  onPress,
+  ...rest
+}: CategorySelectProps) {
   return (
-    <Container>
-      <Button onPress={onPress}>
+    <Container testID="button-category" onPress={onPress} {...rest}>
+      <Button>
         <Category>{title}</Category>
         <Icon name="chevron-down" />
       </Button>
